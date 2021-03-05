@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1024682522607",
+    "project_id": "image-labeling-udemy",
+    "storage_bucket": "image-labeling-udemy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024682522607:android:367c123279ce7deee2e81a",
+        "android_client_info": {
+          "package_name": "com.example.ml_kit_image_labeling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024682522607-euvk40256ob3o0omlg3rih3ipib2ioli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOKQRJBFrqJljALI9qk9Kg6VykTsxynus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024682522607-euvk40256ob3o0omlg3rih3ipib2ioli.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

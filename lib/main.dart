@@ -28,18 +28,18 @@ class _MyHomePageState extends State<MyHomePage> {
   _imgFromCamera() async {
     PickedFile pickedFile =
         await imagePicker.getImage(source: ImageSource.camera);
-    _image = File(pickedFile.path);
+
     setState(() {
-      _image;
+      _image = File(pickedFile.path);
     });
   }
 
   _imgFromGallery() async {
     PickedFile pickedFile =
         await imagePicker.getImage(source: ImageSource.gallery);
-    _image = File(pickedFile.path);
+
     setState(() {
-      _image;
+      _image = File(pickedFile.path);
     });
   }
 
