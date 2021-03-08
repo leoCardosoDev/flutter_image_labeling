@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,12 +18,13 @@ class _MyHomePageState extends State<MyHomePage> {
   ImagePicker imagePicker;
   File _image;
   String result = '';
-  //TODO declare ImageLabeler
+  ImageLabeler labeler;
+
   @override
   void initState() {
     super.initState();
     imagePicker = ImagePicker();
-    //TODO initialize labeler
+    labeler = FirebaseVision.instance.imageLabeler();
   }
 
   _imgFromCamera() async {
@@ -32,6 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _image = File(pickedFile.path);
     });
+
+    doImageLabeling();
   }
 
   _imgFromGallery() async {
@@ -41,10 +45,24 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _image = File(pickedFile.path);
     });
+    doImageLabeling();
   }
 
-  //TODO image labeling code here
-  doImageLabeling() async {}
+  doImageLabeling() async {
+    result = "";
+    final FirebaseVisionImage visionImage =
+        FirebaseVisionImage.fromFile(_image);
+
+    final List<ImageLabel> labels = await labeler.processImage(visionImage);
+
+    for (ImageLabel li in labels) {
+      result += li.text + " " + li.confidence.toStringAsFixed(2) + "\n";
+    }
+
+    setState(() {
+      result;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ]),
                   Center(
-                    child: FlatButton(
+                    child: TextButton(
                       onPressed: _imgFromGallery,
                       onLongPress: _imgFromCamera,
                       child: Container(
